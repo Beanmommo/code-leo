@@ -1,3 +1,5 @@
 <template>
-    Test
+    <SectionHero />
+    <SectionExperiences />
+    <SectionProjects />
 </template>

@@ -24,8 +24,7 @@
         padding-right: 0.5rem;
         border: 1px solid red;
         box-sizing: border-box;
-        position: sticky;
-        top: 0;
+        bottom: 0;
         width: 100%;
         height: 50px;
         display: grid;
