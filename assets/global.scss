@@ -1,6 +1,6 @@
-@import "./_variables.scss";
-@import "./_fonts.scss";
-@import "./reset.scss";
+@forward "fonts";
+@forward "reset";
+@forward "variables";
 
 body {
   font-family: monospace;
@@ -10,8 +10,6 @@ body {
   width: 100%;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
 }
 
 @media (min-width: 475px) {
