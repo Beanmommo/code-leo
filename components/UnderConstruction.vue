@@ -1,7 +1,7 @@
 <template>
     <div class="container">
-        <img src="/public/images/frying-pan.gif" <p class="text" />
-        <p>Leonardo is cooking something good</p>
+        <img src="/public/images/frying-pan.gif" class="text" />
+        <h1>Leonardo is cooking something good</h1>
     </div>
 </template>
 
@@ -16,7 +16,6 @@
             #fad0c4,
             #ffd1ff,
             #d4c4fc);
-    background-size: 400% 400%;
     animation: gradient 5s ease infinite;
 }
 
