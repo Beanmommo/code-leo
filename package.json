@@ -15,5 +15,8 @@
     "sass": "^1.85.0",
     "vue": "latest",
     "vue-router": "latest"
+  },
+  "engines": {
+    "node": ">=23.7.0"
   }
 }
