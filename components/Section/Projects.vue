@@ -1,34 +1,7 @@
 <script setup lang="ts">
-// Sample project data
-const projects = ref([
-    {
-        id: 1,
-        title: 'E-Commerce Platform',
-        description: 'A full-featured e-commerce platform built with Vue.js and Nuxt, featuring product listings, cart functionality, and checkout process.',
-        image: '/projects/ecommerce.jpg',
-        tags: ['Vue.js', 'Nuxt', 'Tailwind CSS', 'Stripe'],
-        link: '#',
-        github: 'https://github.com/yourusername/ecommerce-project'
-    },
-    {
-        id: 2,
-        title: 'Task Management App',
-        description: 'A productivity application for managing tasks and projects with drag-and-drop functionality, user authentication, and real-time updates.',
-        image: '/projects/taskapp.jpg',
-        tags: ['Vue.js', 'Firebase', 'Vuex', 'SCSS'],
-        link: '#',
-        github: 'https://github.com/yourusername/task-management'
-    },
-    {
-        id: 3,
-        title: 'Weather Dashboard',
-        description: 'A weather application that displays current conditions and forecasts for any location, with beautiful visualizations and responsive design.',
-        image: '/projects/weather.jpg',
-        tags: ['Vue.js', 'OpenWeather API', 'Chart.js', 'Geolocation'],
-        link: '#',
-        github: 'https://github.com/yourusername/weather-dashboard'
-    }
-]);
+// Import the projects data from the composable
+import { useProjects } from '~/composables/useProjects';
+const { projects } = useProjects();
 
 // For animation
 const isVisible = ref(false);
@@ -52,21 +25,25 @@ onMounted(() => {
             <div class="section-header">
                 <h2 class="section-title">My Projects</h2>
                 <p class="section-subtitle">Here are some of my recent work</p>
+                <div class="view-all-projects">
+                    <NuxtLink to="/projects" class="view-all-link">View All Projects →</NuxtLink>
+                </div>
             </div>
 
             <div class="projects-grid">
                 <div v-for="project in projects" :key="project.id" class="project-card">
-                    <div class="project-image">
-                        <img :src="project.image" :alt="project.title" />
-                    </div>
                     <div class="project-content">
+                        <NuxtLink :to="`/projects/${project.slug}`" class="project-image">
+                            <img :src="project.image" :alt="project.title" width="300px" />
+                        </NuxtLink>
+
                         <h3 class="project-title">{{ project.title }}</h3>
                         <p class="project-description">{{ project.description }}</p>
                         <div class="project-tags">
                             <span v-for="(tag, index) in project.tags" :key="index" class="tag">{{ tag }}</span>
                         </div>
                         <div class="project-links">
-                            <a :href="project.link" class="project-link" target="_blank">View Demo</a>
+                            <NuxtLink :to="`/projects/${project.slug}`" class="project-link">View Details</NuxtLink>
                             <a :href="project.github" class="project-link github" target="_blank">
                                 GitHub
                             </a>
@@ -79,6 +56,8 @@ onMounted(() => {
 </template>
 
 <style lang="scss" scoped>
+@use 'sass:color';
+
 .projects-section {
     opacity: 0;
     transform: translateY(20px);
@@ -108,6 +87,31 @@ onMounted(() => {
         color: #666;
         max-width: 600px;
         margin: 0 auto;
+        margin-bottom: $unit * 4;
+    }
+
+    .view-all-projects {
+        margin-top: $unit * 5;
+
+        .view-all-link {
+            display: inline-block;
+            font-family: 'Noto Sans', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: $accent;
+            text-decoration: none;
+            padding: $unit * 2 $unit * 4;
+            border: 2px solid $accent;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+
+            &:hover {
+                background-color: $accent;
+                color: white;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+        }
     }
 }
 
@@ -197,7 +201,7 @@ onMounted(() => {
             color: white;
 
             &:hover {
-                background-color: darken($accent, 10%);
+                background-color: color.scale($color: $accent, $lightness: -10%)
             }
 
             &.github {

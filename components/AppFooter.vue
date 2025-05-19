@@ -14,8 +14,12 @@ const currentYear = new Date().getFullYear();
                 <div class="footer-section">
                     <h3>Navigation</h3>
                     <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#projects">Projects</a></li>
+                        <li>
+                            <NuxtLink to="/">Home</NuxtLink>
+                        </li>
+                        <li>
+                            <NuxtLink to="/projects">Projects</NuxtLink>
+                        </li>
                         <li><a href="#tech-stack">Tech Stack</a></li>
                         <li><a href="#background">Background</a></li>
                     </ul>

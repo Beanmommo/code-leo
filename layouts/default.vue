@@ -1,6 +1,14 @@
+<script setup lang="ts">
+const route = useRoute();
+
+// Only show breadcrumbs on pages other than home
+const showBreadcrumbs = computed(() => route.path !== '/');
+</script>
+
 <template>
     <section class="layout">
         <AppHeader />
+        <BaseBreadcrumb v-if="showBreadcrumbs" />
         <div class="container">
             <div class="section--container">
                 <slot />
