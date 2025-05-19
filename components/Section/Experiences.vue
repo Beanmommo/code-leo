@@ -3,60 +3,55 @@
 const experiences = ref([
     {
         id: 1,
-        role: 'Senior Frontend Developer',
-        company: 'Tech Solutions Inc.',
-        period: 'Jan 2022 - Present',
-        description: 'Lead the frontend development team in building modern web applications using Vue.js and Nuxt. Implemented best practices for code quality and performance optimization.',
+        role: 'Freelance Software Developer',
+        company: 'Self Employed',
+        period: 'May 2024 - Present',
+        description: 'Develop custom web applications with Vue.js, Nuxt.js, and Firebase for various clients.',
         responsibilities: [
-            'Architected and developed scalable frontend solutions',
-            'Mentored junior developers and conducted code reviews',
-            'Collaborated with UX/UI designers to implement responsive designs',
-            'Optimized application performance and reduced load times by 40%'
+            'Developed and released frontend features using Vue.js and Nuxt.js, including drag-and-drop form builder and dynamic component rendering.',
+            'Integrated SharePoint REST API and Firebase for cloud data manipulation; implemented middleware for auth/session handling and reusable CRUD utilities.',
+            'Ensured robust development practices through type-safe interfaces, error handling (try-catch), and thorough troubleshooting and defect analysis.',
+            'Maintained clean Git workflows with task-based branches, well-documented pull requests, and clear commit messages to avoid merge conflicts.',
+            'Presented features in client demos, communicated implementation details effectively, and led data structure analysis and migration efforts.'
         ]
     },
     {
         id: 2,
-        role: 'Frontend Developer',
-        company: 'Digital Innovations',
-        period: 'Mar 2020 - Dec 2021',
-        description: 'Worked on multiple client projects developing responsive web applications with Vue.js and integrating with RESTful APIs.',
+        role: 'Software Developer Intern',
+        company: 'Nexa Lab',
+        period: 'Feb 2024 - Apr 2024',
+        description: 'Developed UI features with React.js and Next.js, documented API integrations, designed wireframes in Figma, and represented UI/UX in agile meetings.',
         responsibilities: [
-            'Developed and maintained client websites and web applications',
-            'Implemented responsive designs and ensured cross-browser compatibility',
-            'Collaborated with backend developers to integrate frontend with APIs',
-            'Participated in agile development processes and sprint planning'
+            'Developed a contact us form using React.js and Next.js, capturing visitor contact and message allowing communication between stakeholders.',
+            'Documented third-party API integration guide, boosting development efficiency by 100%',
+            'Built wireframe using Figma translating product owner requirements into a storyboard.',
+            'Participated on weekly scrum meeting and effectively represent UI/UX design views and interests.'
         ]
     },
-    {
-        id: 3,
-        role: 'Web Developer Intern',
-        company: 'StartUp Hub',
-        period: 'Jun 2019 - Feb 2020',
-        description: 'Assisted in the development of web applications and gained hands-on experience with modern frontend technologies.',
-        responsibilities: [
-            'Assisted senior developers in implementing UI components',
-            'Fixed bugs and improved application performance',
-            'Learned and applied best practices in web development',
-            'Participated in code reviews and team meetings'
-        ]
-    }
 ]);
 
 // Education data
 const education = ref([
     {
         id: 1,
-        degree: 'Bachelor of Science in Computer Science',
-        institution: 'University of Technology',
-        period: '2015 - 2019',
-        description: 'Focused on web development, algorithms, and software engineering principles.'
+        degree: 'ACS IT Professional Year',
+        institution: 'Performance Education',
+        period: 'Oct 2024 - Present',
+        description: 'Will graduate October 2025'
     },
     {
         id: 2,
-        degree: 'Full Stack Web Development Bootcamp',
-        institution: 'Code Academy',
+        degree: 'Bachelor of Engineering (Honours) in Software Engineering',
+        institution: 'Monash University',
         period: '2019',
-        description: 'Intensive 12-week program covering modern web development technologies and practices.'
+        description: 'Graduated December 2023'
+    },
+    {
+        id: 3,
+        degree: 'High School',
+        institution: 'Sekolah Terpadu PAHOA',
+        period: '2018',
+        description: 'High School in Indonesia'
     }
 ]);
 
@@ -86,7 +81,7 @@ onMounted(() => {
 
             <!-- Work Experience -->
             <div class="experience-container">
-                <h3 class="subsection-title">Work Experience</h3>
+                <h3 class="subsection-title">Relevant Work Experience</h3>
 
                 <div class="timeline">
                     <div v-for="exp in experiences" :key="exp.id" class="timeline-item">

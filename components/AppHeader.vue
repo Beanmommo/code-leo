@@ -3,6 +3,16 @@
 const activeSection = ref('home');
 const route = useRoute();
 const isMobileMenuOpen = ref(false);
+const isScrolled = ref(false);
+
+// Define scroll handler function
+const handleScroll = () => {
+    if (window.scrollY > 10) {
+        isScrolled.value = true;
+    } else {
+        isScrolled.value = false;
+    }
+};
 
 // Set active section based on current route
 onMounted(() => {
@@ -13,13 +23,10 @@ onMounted(() => {
     }
 
     // Close mobile menu when clicking outside
-    document.addEventListener('click', (event) => {
-        const target = event.target as HTMLElement;
-        const header = document.querySelector('.app-header');
-        if (isMobileMenuOpen.value && header && !header.contains(target)) {
-            isMobileMenuOpen.value = false;
-        }
-    });
+    document.addEventListener('click', handleOutsideClick);
+
+    // Add scroll event listener to change header appearance on scroll
+    window.addEventListener('scroll', handleScroll);
 });
 
 // Watch for route changes to update active section
@@ -58,10 +65,28 @@ const scrollToSection = (sectionId: string) => {
 const toggleMobileMenu = () => {
     isMobileMenuOpen.value = !isMobileMenuOpen.value;
 };
+
+// Define click handler for outside clicks
+const handleOutsideClick = (event: MouseEvent) => {
+    const target = event.target as HTMLElement;
+    const header = document.querySelector('.app-header');
+    if (isMobileMenuOpen.value && header && !header.contains(target)) {
+        isMobileMenuOpen.value = false;
+    }
+};
+
+// Cleanup event listeners when component is unmounted
+onUnmounted(() => {
+    // Remove scroll event listener
+    window.removeEventListener('scroll', handleScroll);
+
+    // Remove click event listener
+    document.removeEventListener('click', handleOutsideClick);
+});
 </script>
 
 <template>
-    <div class="header-wrapper">
+    <div class="header-wrapper" :class="{ 'scrolled': isScrolled }">
         <header class="app-header">
             <div class="app-header-logo">
                 <NuxtLink to="/" style="text-decoration: none; display: flex; align-items: center; gap: 8px;">
@@ -93,7 +118,7 @@ const toggleMobileMenu = () => {
                             Projects
                         </NuxtLink>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="#tech-stack" @click.prevent="scrollToSection('tech-stack')"
                             :class="{ active: activeSection === 'tech-stack' }">
                             Tech Stack
@@ -104,7 +129,7 @@ const toggleMobileMenu = () => {
                             :class="{ active: activeSection === 'background' }">
                             Background
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
             </nav>
 
@@ -159,24 +184,31 @@ const toggleMobileMenu = () => {
 
 // Header wrapper to contain both header and mobile menu
 .header-wrapper {
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
     width: 100%;
-    z-index: 100;
+    z-index: 1000;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+
+    &.scrolled {
+        background-color: rgba(255, 255, 255, 0.98);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
 }
 
 .app-header {
     padding: 0 $padding;
-    background-color: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(5px);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
     width: 100%;
     height: 70px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    z-index: 100;
+    z-index: 1001;
 
     &-logo {
         display: flex;
@@ -306,14 +338,16 @@ const toggleMobileMenu = () => {
 // Mobile menu
 .mobile-menu {
     display: none;
-    position: relative;
+    position: absolute;
+    top: 70px; // Height of the header
+    left: 0;
     width: 100%;
     background-color: white;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease;
-    z-index: 99;
+    z-index: 999;
 
     &.open {
         max-height: 580px; // Adjust based on your menu height
@@ -351,15 +385,9 @@ const toggleMobileMenu = () => {
 
 // Responsive adjustments
 @media (max-width: 768px) {
-    .header-wrapper {
-        background-color: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(5px);
-    }
-
     .app-header {
         height: 70px;
         padding: 0 $unit * 3;
-        box-shadow: none; // Remove shadow from header as it's now on the wrapper
 
         &-logo {
             .logo-text {

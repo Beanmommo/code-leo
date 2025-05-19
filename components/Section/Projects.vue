@@ -3,6 +3,11 @@
 import { useProjects } from '~/composables/useProjects';
 const { projects } = useProjects();
 
+// Get only the top 3 projects
+const topProjects = computed(() => {
+    return projects.value.slice(0, 3);
+});
+
 // For animation
 const isVisible = ref(false);
 onMounted(() => {
@@ -24,14 +29,14 @@ onMounted(() => {
         <div class="projects-section" :class="{ 'visible': isVisible }">
             <div class="section-header">
                 <h2 class="section-title">My Projects</h2>
-                <p class="section-subtitle">Here are some of my recent work</p>
+                <p class="section-subtitle">Here are my top 3 recent projects</p>
                 <div class="view-all-projects">
                     <NuxtLink to="/projects" class="view-all-link">View All Projects →</NuxtLink>
                 </div>
             </div>
 
             <div class="projects-grid">
-                <div v-for="project in projects" :key="project.id" class="project-card">
+                <div v-for="project in topProjects" :key="project.id" class="project-card">
                     <div class="project-content">
                         <NuxtLink :to="`/projects/${project.slug}`" class="project-image">
                             <img :src="project.image" :alt="project.title" width="250px" />
@@ -114,8 +119,10 @@ onMounted(() => {
 
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: $margin;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .project-card {
@@ -213,9 +220,56 @@ onMounted(() => {
 }
 
 // Responsive adjustments
+@media (max-width: 1024px) {
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 0 $padding;
+    }
+}
+
 @media (max-width: 768px) {
     .projects-grid {
         grid-template-columns: 1fr;
+        padding: 0 $padding;
+    }
+
+    .section-header {
+        .section-title {
+            font-size: 2.2rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .section-header {
+        .section-title {
+            font-size: 2rem;
+        }
+
+        .section-subtitle {
+            font-size: 1rem;
+        }
+
+        .view-all-projects {
+            .view-all-link {
+                font-size: 1rem;
+                padding: $unit * 1.5 $unit * 3;
+            }
+        }
+    }
+
+    .project-card {
+        .project-title {
+            font-size: 1.3rem;
+        }
+
+        .project-description {
+            font-size: 0.95rem;
+        }
     }
 }
 </style>

@@ -5,12 +5,12 @@ const techCategories = ref([
         id: 'frontend',
         title: 'Frontend',
         skills: [
-            { name: 'Vue.js', level: 90, icon: '/icons/vue.svg' },
-            { name: 'Nuxt.js', level: 85, icon: '/icons/nuxt.svg' },
+            { name: 'Vue.js', level: 95, icon: '/icons/vue.svg' },
+            { name: 'Nuxt.js', level: 90, icon: '/icons/nuxt.svg' },
             { name: 'TypeScript', level: 80, icon: '/icons/typescript.svg' },
             { name: 'HTML/CSS', level: 95, icon: '/icons/html5.svg' },
         ],
-        additionalSkills: ['React.js', 'Next.js', 'Angular', 'Tailwind CSS', 'SASS/SCSS', 'JavaScript ES6+', 'Responsive Design']
+        additionalSkills: ['React.js', 'Next.js', 'Tailwind CSS', 'SASS/SCSS', 'JavaScript ES6+', 'Responsive Design', 'Tailwind', 'SCSS/SASS']
     },
     {
         id: 'backend',
@@ -19,7 +19,7 @@ const techCategories = ref([
             { name: 'Node.js', level: 75, icon: '/icons/nodejs.svg' },
             { name: 'Firebase', level: 70, icon: '/icons/firebase.svg' },
         ],
-        additionalSkills: ['Express.js', 'MongoDB', 'RESTful APIs', 'GraphQL', 'PostgreSQL', 'AWS', 'Serverless']
+        additionalSkills: ['C#', '.NET Core 8/9', 'SQL']
     },
     {
         id: 'tools',
@@ -27,9 +27,8 @@ const techCategories = ref([
         skills: [
             { name: 'Git', level: 85, icon: '/icons/git.svg' },
             { name: 'Canva', level: 65, icon: '/icons/canva.svg' },
-            { name: 'Figma', level: 75, icon: '/icons/figma.svg' },
         ],
-        additionalSkills: ['GitHub', 'VS Code', 'Docker', 'CI/CD', 'Jest', 'Cypress', 'Webpack', 'Vite', 'Agile/Scrum']
+        additionalSkills: ['Augment Code', 'GitHub', 'VS Code', 'Cloudflare', 'Vercel', 'Nuxt Hub', 'zsh, bash, powershell', 'Pinia', 'nvm', 'Lodash', 'Wix Studio', 'Zipbooks']
     }
 ]);
 
