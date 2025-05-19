@@ -37,14 +37,14 @@ const currentYear = new Date().getFullYear();
         </div>
 
         <div class="footer-bottom">
-            <p>&copy; {{ currentYear }} Your Name. All rights reserved.</p>
+            <p>&copy; {{ currentYear }} Leonardo Prasetyo. All rights reserved.</p>
         </div>
     </footer>
 </template>
 
 <style lang="scss" scoped>
 .app-footer {
-    background-color: #1a1a1a;
+    background-color: #363636;
     color: #fff;
     padding: $padding * 2 $padding;
     width: 100%;

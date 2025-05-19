@@ -66,7 +66,7 @@ const toggleMobileMenu = () => {
             <div class="app-header-logo">
                 <NuxtLink to="/" style="text-decoration: none; display: flex; align-items: center; gap: 8px;">
                     <img src="/public/logo.png" alt="logo" width="50px" />
-                    <span class="logo-text">Leo Portfolio</span>
+                    <span class="logo-text">Portfolio</span>
                 </NuxtLink>
             </div>
 

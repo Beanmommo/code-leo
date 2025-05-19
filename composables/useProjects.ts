@@ -42,10 +42,9 @@ export function useProjects() {
         "An enterprise-level website for a church, featuring church details, event management, and member resources.",
       fullDescription:
         "An enterprise-level website for a church, featuring church details, event management, and member resources. The site includes a content management system, and member resources for accessing private resources. Built with Wix Studio and integrated with Wix Events for seamless event management.",
-      projectAim:
-        "To create a modern, user-friendly website that serves as the digital hub for Christ Covenant Church, enabling them to effectively communicate with their congregation, manage events, and provide resources to members in a secure and accessible way.",
+      projectAim: "To enhance church's website user experience and design",
       image: "/projects/christ-covenant.png",
-      tags: ["Wix Studio", "Wix Events", "Canva"],
+      tags: ["Wix Studio", "Canva", "Google SEO", "Power BI"],
       link: "https://www.covenant.org.au",
       github: "#",
       featured: true,
@@ -55,12 +54,14 @@ export function useProjects() {
         "/projects/ecommerce/screenshot3.jpg",
       ],
       technicalContributions: [
-        "Designed and implemented a responsive layout that adapts seamlessly to all device sizes",
-        "Integrated Wix Events for streamlined event management and registration",
-        "Created custom member authentication and access control for private resources",
-        "Optimized site performance with lazy loading and image optimization techniques",
-        "Implemented SEO best practices to improve search engine visibility",
-        "Developed custom contact forms with validation and email notification integration",
+        "Developed 8 responsive web pages on Wix Studio for church's public visibility",
+        "Optmised individual pages indexing to optimse public visibility using Google SEO.",
+        "Added password-protected navigation guard for member's only visibility.",
+        "Embeded Power-BI <i-frame> to display church financials responsively.",
+        "Created custom ministry icons using Canva for personal church branding.",
+        "Optimised website look and feel to attract church attendee demographics.",
+        "Translated product owner requirements into production features.",
+        "Performs regular content updates.",
       ],
       technologies: [
         {
@@ -72,6 +73,16 @@ export function useProjects() {
           name: "Canva",
           description: "Design tool for creating graphics and layouts",
           icon: "/icons/canva.svg",
+        },
+        {
+          name: "Google SEO",
+          description: "Search engine optimization for better visibility",
+          icon: "/icons/google-seo.svg",
+        },
+        {
+          name: "Power BI",
+          description: "Business analytics service for data visualization",
+          icon: "/icons/powerbi.svg",
         },
       ],
       date: "January 2024",

@@ -34,7 +34,7 @@ onMounted(() => {
                 <div v-for="project in projects" :key="project.id" class="project-card">
                     <div class="project-content">
                         <NuxtLink :to="`/projects/${project.slug}`" class="project-image">
-                            <img :src="project.image" :alt="project.title" width="300px" />
+                            <img :src="project.image" :alt="project.title" width="250px" />
                         </NuxtLink>
 
                         <h3 class="project-title">{{ project.title }}</h3>
