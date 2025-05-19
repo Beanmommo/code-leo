@@ -178,4 +178,58 @@ const breadcrumbs = computed(() => {
     }
   }
 }
+
+// Extra small device adjustments
+@media (max-width: 500px) {
+  .breadcrumb {
+    padding: $unit 0;
+    width: 100%; // Use 100% instead of 100vw to prevent overflow
+    max-width: 100%;
+    box-sizing: border-box;
+
+    .container {
+      padding: 0 $unit * 2;
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    ol {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      padding-bottom: $unit;
+      -webkit-overflow-scrolling: touch;
+      width: 100%;
+      max-width: 100%;
+
+      &::-webkit-scrollbar {
+        display: none; // Hide scrollbar on mobile
+      }
+    }
+
+    li {
+      white-space: nowrap;
+      font-size: 0.75rem;
+
+      a {
+        padding: $unit $unit / 2;
+      }
+
+      span {
+        &.current-page {
+          padding: $unit $unit / 2;
+        }
+
+        &.separator {
+          margin: 0 2px;
+
+          svg {
+            width: 10px;
+            height: 10px;
+          }
+        }
+      }
+    }
+  }
+}
 </style>

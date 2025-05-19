@@ -22,10 +22,25 @@ const showBreadcrumbs = computed(() => route.path !== '/');
 .layout {
     display: grid;
     row-gap: $section-gap;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 .section--container {
     display: grid;
     row-gap: $section-gap;
+    width: 100%;
+}
+
+@media (max-width: 500px) {
+    .layout {
+        padding: 0;
+    }
+
+    .container {
+        padding-left: $unit * 2;
+        padding-right: $unit * 2;
+    }
 }
 </style>

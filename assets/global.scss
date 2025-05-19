@@ -4,6 +4,15 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit; /* Ensure all elements inherit box-sizing */
 }
 
 body {
@@ -11,6 +20,10 @@ body {
   color: #333;
   line-height: 1.6;
   background-color: #f8f9fa;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  width: 100%;
+  max-width: 100%;
+  position: relative;
 }
 
 // Container for consistent width across sections

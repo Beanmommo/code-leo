@@ -49,9 +49,9 @@ export function useProjects() {
       github: "#",
       featured: true,
       screenshots: [
-        "/projects/ecommerce/screenshot1.jpg",
-        "/projects/ecommerce/screenshot2.jpg",
-        "/projects/ecommerce/screenshot3.jpg",
+        "/projects/christ-covenant/screenshot1.png",
+        "/projects/christ-covenant/screenshot2.png",
+        "/projects/christ-covenant/screenshot3.png",
       ],
       technicalContributions: [
         "Developed 8 responsive web pages on Wix Studio for church's public visibility",
@@ -67,7 +67,7 @@ export function useProjects() {
         {
           name: "Wix Studio",
           description: "Website builder with advanced features",
-          icon: "/icons/wixstudio.svg",
+          icon: "/icons/wix.svg",
         },
         {
           name: "Canva",
@@ -77,12 +77,12 @@ export function useProjects() {
         {
           name: "Google SEO",
           description: "Search engine optimization for better visibility",
-          icon: "/icons/google-seo.svg",
+          icon: "/icons/google.svg",
         },
         {
           name: "Power BI",
           description: "Business analytics service for data visualization",
-          icon: "/icons/powerbi.svg",
+          icon: "/icons/power-bi.svg",
         },
       ],
       date: "January 2024",

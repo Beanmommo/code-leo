@@ -110,7 +110,7 @@ const toggleMobileMenu = () => {
 
             <div class="app-header-contact desktop-contact">
                 <a href="#contact" @click.prevent="scrollToSection('contact')" class="contact-button">
-                    Contact Me
+                    Let's Connect
                 </a>
             </div>
         </header>
@@ -385,6 +385,40 @@ const toggleMobileMenu = () => {
 @media (min-width: 769px) {
     .mobile-menu {
         display: none;
+    }
+}
+
+// Extra small device adjustments
+@media (max-width: 500px) {
+    .header-wrapper {
+        width: 100%; // Use 100% instead of 100vw to prevent overflow
+        max-width: 100%;
+    }
+
+    .app-header {
+        padding: 0 $unit * 2;
+        width: 100%;
+        box-sizing: border-box;
+
+        &-logo {
+            img {
+                width: 40px; // Slightly smaller logo
+            }
+
+            .logo-text {
+                font-size: 1rem;
+            }
+        }
+    }
+
+    .mobile-menu {
+        width: 100%; // Use 100% instead of 100vw to prevent overflow
+        max-width: 100%;
+        box-sizing: border-box;
+
+        .mobile-nav {
+            padding: $unit * 2;
+        }
     }
 }
 </style>

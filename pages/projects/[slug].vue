@@ -529,6 +529,8 @@ const relatedProjects = computed(() => {
     align-items: center;
     justify-content: center;
     z-index: 1000;
+    overflow: hidden; // Prevent scrolling when modal is open
+    box-sizing: border-box;
 
     .gallery-content {
         position: relative;
@@ -642,19 +644,98 @@ const relatedProjects = computed(() => {
             }
         }
     }
+}
 
-    .gallery-modal {
-        .nav-button {
-            width: 40px;
-            height: 40px;
+// Extra small device adjustments
+@media (max-width: 500px) {
+    .project-detail-page {
+        width: 100%; // Use 100% instead of 100vw
+        max-width: 100%;
+        overflow-x: hidden; // Prevent horizontal scrolling
+        box-sizing: border-box;
+    }
 
-            &.prev {
-                left: 10px;
+    .project-hero {
+        padding: $padding * 2 0;
+
+        &-content {
+            padding: 0 $unit * 2;
+        }
+
+        .project-title {
+            font-size: 1.8rem;
+        }
+
+        .project-description {
+            font-size: 1rem;
+        }
+
+        .project-meta {
+            flex-direction: column;
+            gap: $unit * 2;
+        }
+
+        .project-links {
+            gap: $unit * 2;
+
+            .btn {
+                padding: $unit * 2 $unit * 3;
+                font-size: 0.9rem;
+                width: 100%;
+                text-align: center;
             }
+        }
+    }
 
-            &.next {
-                right: 10px;
+    .project-section {
+        padding: $padding * 2 0;
+
+        .container {
+            padding: 0 $unit * 2;
+        }
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .project-aim {
+        .project-aim-description {
+            padding: $unit * 2;
+            font-size: 0.95rem;
+        }
+    }
+
+    .technical-contributions {
+        padding: $unit * 2;
+
+        .contributions-list {
+            li {
+                padding-left: $unit * 4;
+                font-size: 0.95rem;
+                margin-bottom: $unit * 3;
+
+                &:before {
+                    width: 20px;
+                    height: 20px;
+                    font-size: 0.9rem;
+                }
             }
+        }
+    }
+}
+
+.gallery-modal {
+    .nav-button {
+        width: 40px;
+        height: 40px;
+
+        &.prev {
+            left: 10px;
+        }
+
+        &.next {
+            right: 10px;
         }
     }
 }

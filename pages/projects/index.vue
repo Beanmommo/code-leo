@@ -27,7 +27,7 @@ onMounted(() => {
         <section class="featured-project-section">
             <div class="container">
                 <h2 class="section-title">Featured Project</h2>
-                
+
                 <div class="featured-project" v-if="featuredProject">
                     <div class="featured-project-image">
                         <img :src="featuredProject.image" :alt="featuredProject.title" />
@@ -39,7 +39,8 @@ onMounted(() => {
                             <span v-for="(tag, index) in featuredProject.tags" :key="index" class="tag">{{ tag }}</span>
                         </div>
                         <div class="featured-project-links">
-                            <NuxtLink :to="`/projects/${featuredProject.slug}`" class="btn btn-primary">View Details</NuxtLink>
+                            <NuxtLink :to="`/projects/${featuredProject.slug}`" class="btn btn-primary">View Details
+                            </NuxtLink>
                             <a :href="featuredProject.github" class="btn btn-secondary" target="_blank">GitHub</a>
                             <a :href="featuredProject.link" class="btn btn-outline" target="_blank">Live Demo</a>
                         </div>
@@ -52,7 +53,7 @@ onMounted(() => {
         <section class="all-projects-section">
             <div class="container">
                 <h2 class="section-title">All Projects</h2>
-                
+
                 <div class="projects-grid">
                     <div v-for="project in projects" :key="project.id" class="project-card">
                         <div class="project-image">
@@ -83,7 +84,7 @@ onMounted(() => {
     opacity: 0;
     transform: translateY(20px);
     transition: all 0.8s ease-out;
-    
+
     &.visible {
         opacity: 1;
         transform: translateY(0);
@@ -94,7 +95,7 @@ onMounted(() => {
     background-color: #f8f9fa;
     padding: $padding * 4 0;
     text-align: center;
-    
+
     .page-title {
         font-family: 'Noto Sans', sans-serif;
         font-size: 3rem;
@@ -102,7 +103,7 @@ onMounted(() => {
         color: #333;
         margin-bottom: $unit * 3;
     }
-    
+
     .page-subtitle {
         font-family: 'Noto Sans', sans-serif;
         font-size: 1.2rem;
@@ -135,43 +136,43 @@ onMounted(() => {
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-    
+
     &-image {
         height: 100%;
-        
+
         img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
     }
-    
+
     &-content {
         padding: $padding * 2;
         display: flex;
         flex-direction: column;
         gap: $unit * 4;
     }
-    
+
     &-title {
         font-family: 'Noto Sans', sans-serif;
         font-size: 2rem;
         font-weight: 700;
         color: #333;
     }
-    
+
     &-description {
         font-family: 'Noto Sans', sans-serif;
         font-size: 1.1rem;
         color: #666;
         line-height: 1.6;
     }
-    
+
     &-tags {
         display: flex;
         flex-wrap: wrap;
         gap: $unit * 2;
-        
+
         .tag {
             background-color: rgba($accent, 0.1);
             color: $accent;
@@ -181,7 +182,7 @@ onMounted(() => {
             font-weight: 500;
         }
     }
-    
+
     &-links {
         display: flex;
         gap: $unit * 3;
@@ -207,32 +208,32 @@ onMounted(() => {
     overflow: hidden;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
     transition: all 0.3s ease;
-    
+
     &:hover {
         transform: translateY(-5px);
         box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     }
-    
+
     .project-image {
         height: 200px;
         overflow: hidden;
-        
+
         img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.5s ease;
-            
+
             &:hover {
                 transform: scale(1.05);
             }
         }
     }
-    
+
     .project-content {
         padding: $padding;
     }
-    
+
     .project-title {
         font-family: 'Noto Sans', sans-serif;
         font-size: 1.5rem;
@@ -240,7 +241,7 @@ onMounted(() => {
         color: #333;
         margin-bottom: $unit * 3;
     }
-    
+
     .project-description {
         font-family: 'Noto Sans', sans-serif;
         font-size: 1rem;
@@ -248,13 +249,13 @@ onMounted(() => {
         line-height: 1.6;
         margin-bottom: $unit * 4;
     }
-    
+
     .project-tags {
         display: flex;
         flex-wrap: wrap;
         gap: $unit * 2;
         margin-bottom: $unit * 4;
-        
+
         .tag {
             background-color: rgba($accent, 0.1);
             color: $accent;
@@ -264,11 +265,11 @@ onMounted(() => {
             font-weight: 500;
         }
     }
-    
+
     .project-links {
         display: flex;
         gap: $unit * 3;
-        
+
         .project-link {
             padding: $unit * 2 $unit * 4;
             border-radius: 4px;
@@ -279,14 +280,14 @@ onMounted(() => {
             transition: all 0.3s ease;
             background-color: $accent;
             color: white;
-            
+
             &:hover {
                 background-color: darken($accent, 10%);
             }
-            
+
             &.github {
                 background-color: #333;
-                
+
                 &:hover {
                     background-color: #000;
                 }
@@ -303,34 +304,34 @@ onMounted(() => {
     font-weight: 600;
     text-decoration: none;
     transition: all 0.3s ease;
-    
+
     &-primary {
         background-color: $accent;
         color: white;
-        
+
         &:hover {
             background-color: darken($accent, 10%);
             transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
     }
-    
+
     &-secondary {
         background-color: #333;
         color: white;
-        
+
         &:hover {
             background-color: #000;
             transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
     }
-    
+
     &-outline {
         background-color: transparent;
         color: $accent;
         border: 2px solid $accent;
-        
+
         &:hover {
             background-color: rgba($accent, 0.1);
             transform: translateY(-2px);
@@ -342,18 +343,93 @@ onMounted(() => {
 @media (max-width: 768px) {
     .featured-project {
         grid-template-columns: 1fr;
-        
+
         &-image {
             height: 250px;
         }
     }
-    
+
     .projects-grid {
         grid-template-columns: 1fr;
     }
-    
-    .featured-project-links, .project-links {
+
+    .featured-project-links,
+    .project-links {
         flex-wrap: wrap;
+    }
+}
+
+// Extra small device adjustments
+@media (max-width: 500px) {
+    .projects-page {
+        width: 100%; // Use 100% instead of 100vw
+        max-width: 100%;
+        overflow-x: hidden; // Prevent horizontal scrolling
+        box-sizing: border-box;
+    }
+
+    .page-header {
+        padding: $padding * 2 0;
+
+        .page-title {
+            font-size: 2rem;
+        }
+
+        .page-subtitle {
+            font-size: 1rem;
+        }
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .featured-project-section,
+    .all-projects-section {
+        padding: $padding * 2 0;
+    }
+
+    .featured-project {
+        &-image {
+            height: 200px;
+        }
+
+        &-content {
+            padding: $padding;
+        }
+
+        &-title {
+            font-size: 1.5rem;
+        }
+
+        &-description {
+            font-size: 0.95rem;
+        }
+
+        &-links {
+            gap: $unit * 2;
+
+            .btn {
+                padding: $unit * 2 $unit * 3;
+                font-size: 0.9rem;
+                width: 100%;
+                text-align: center;
+            }
+        }
+    }
+
+    .project-card {
+        .project-image {
+            height: 180px;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+        }
+
+        .project-description {
+            font-size: 0.95rem;
+        }
     }
 }
 </style>
