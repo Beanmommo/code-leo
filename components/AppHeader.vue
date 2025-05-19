@@ -308,7 +308,6 @@ const toggleMobileMenu = () => {
     display: none;
     position: relative;
     width: 100%;
-    height: 70px;
     background-color: white;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     max-height: 0;
@@ -317,7 +316,7 @@ const toggleMobileMenu = () => {
     z-index: 99;
 
     &.open {
-        max-height: 300px; // Adjust based on your menu height
+        max-height: 580px; // Adjust based on your menu height
         overflow-y: auto;
     }
 
