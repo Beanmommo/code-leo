@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import heroContent from '@/public/hero-content.json';
 // Animation properties for text reveal
 const isVisible = ref(false);
+const HERO_CONTENT = heroContent
 
 // Trigger animation after component is mounted
 onMounted(() => {
@@ -16,12 +18,11 @@ onMounted(() => {
             <div class="hero-content">
                 <h1 class="hero-title">
                     <span class="greeting">Hello, I'm</span>
-                    <span class="name">Your Name</span>
+                    <span class="name">{{ HERO_CONTENT.name }}</span>
                 </h1>
-                <h2 class="hero-subtitle">Software Developer</h2>
+                <h2 class="hero-subtitle">{{ HERO_CONTENT.title }}</h2>
                 <p class="hero-description">
-                    I build modern, responsive web applications with a focus on user experience and clean code.
-                    Specialized in frontend development with Vue.js and Nuxt.
+                    {{ HERO_CONTENT.description }}
                 </p>
                 <div class="hero-cta">
                     <a href="#projects" class="btn btn-primary">View My Work</a>

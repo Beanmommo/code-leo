@@ -21,30 +21,26 @@ const scrollToSection = (sectionId: string) => {
         <nav class="app-header-nav">
             <ul class="nav-links">
                 <li>
-                    <a href="#home"
-                       @click.prevent="scrollToSection('home')"
-                       :class="{ active: activeSection === 'home' }">
+                    <a href="#home" @click.prevent="scrollToSection('home')"
+                        :class="{ active: activeSection === 'home' }">
                         Home
                     </a>
                 </li>
                 <li>
-                    <a href="#projects"
-                       @click.prevent="scrollToSection('projects')"
-                       :class="{ active: activeSection === 'projects' }">
+                    <a href="#projects" @click.prevent="scrollToSection('projects')"
+                        :class="{ active: activeSection === 'projects' }">
                         Projects
                     </a>
                 </li>
                 <li>
-                    <a href="#tech-stack"
-                       @click.prevent="scrollToSection('tech-stack')"
-                       :class="{ active: activeSection === 'tech-stack' }">
+                    <a href="#tech-stack" @click.prevent="scrollToSection('tech-stack')"
+                        :class="{ active: activeSection === 'tech-stack' }">
                         Tech Stack
                     </a>
                 </li>
                 <li>
-                    <a href="#background"
-                       @click.prevent="scrollToSection('background')"
-                       :class="{ active: activeSection === 'background' }">
+                    <a href="#background" @click.prevent="scrollToSection('background')"
+                        :class="{ active: activeSection === 'background' }">
                         Background
                     </a>
                 </li>
@@ -127,7 +123,7 @@ const scrollToSection = (sectionId: string) => {
             transition: all 0.3s ease;
 
             &:hover {
-                background-color: darken($accent, 10%);
+                background-color: scale-color($color: $accent, $lightness: -10%);
                 transform: translateY(-2px);
                 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             }
@@ -142,7 +138,9 @@ const scrollToSection = (sectionId: string) => {
         height: auto;
         padding: $unit * 3;
 
-        &-logo, &-nav, &-contact {
+        &-logo,
+        &-nav,
+        &-contact {
             margin: $unit * 2 0;
         }
 
