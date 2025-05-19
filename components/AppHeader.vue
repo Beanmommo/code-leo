@@ -18,6 +18,8 @@ const handleScroll = () => {
 onMounted(() => {
     if (route.path.includes('/projects')) {
         activeSection.value = 'projects-page';
+    } else if (route.path === '/connect') {
+        activeSection.value = 'connect-page';
     } else if (route.path === '/') {
         activeSection.value = 'home';
     }
@@ -33,6 +35,8 @@ onMounted(() => {
 watch(() => route.path, (newPath) => {
     if (newPath.includes('/projects')) {
         activeSection.value = 'projects-page';
+    } else if (newPath === '/connect') {
+        activeSection.value = 'connect-page';
     } else if (newPath === '/') {
         activeSection.value = 'home';
     }
@@ -118,6 +122,11 @@ onUnmounted(() => {
                             Projects
                         </NuxtLink>
                     </li>
+                    <li>
+                        <NuxtLink to="/connect" :class="{ active: activeSection === 'connect-page' }">
+                            Connect
+                        </NuxtLink>
+                    </li>
                     <!-- <li>
                         <a href="#tech-stack" @click.prevent="scrollToSection('tech-stack')"
                             :class="{ active: activeSection === 'tech-stack' }">
@@ -134,9 +143,9 @@ onUnmounted(() => {
             </nav>
 
             <div class="app-header-contact desktop-contact">
-                <a href="#contact" @click.prevent="scrollToSection('contact')" class="contact-button">
+                <NuxtLink to="/connect" class="contact-button">
                     Let's Connect
-                </a>
+                </NuxtLink>
             </div>
         </header>
 
@@ -156,6 +165,11 @@ onUnmounted(() => {
                         </NuxtLink>
                     </li>
                     <li>
+                        <NuxtLink to="/connect" :class="{ active: activeSection === 'connect-page' }">
+                            Connect
+                        </NuxtLink>
+                    </li>
+                    <li>
                         <a href="#tech-stack" @click.prevent="scrollToSection('tech-stack')"
                             :class="{ active: activeSection === 'tech-stack' }">
                             Tech Stack
@@ -165,12 +179,6 @@ onUnmounted(() => {
                         <a href="#background" @click.prevent="scrollToSection('background')"
                             :class="{ active: activeSection === 'background' }">
                             Background
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#contact" @click.prevent="scrollToSection('contact')"
-                            :class="{ active: activeSection === 'contact' }">
-                            Contact Me
                         </a>
                     </li>
                 </ul>
