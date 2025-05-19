@@ -44,9 +44,6 @@ onMounted(() => {
                         </div>
                         <div class="project-links">
                             <NuxtLink :to="`/projects/${project.slug}`" class="project-link">View Details</NuxtLink>
-                            <a :href="project.github" class="project-link github" target="_blank">
-                                GitHub
-                            </a>
                         </div>
                     </div>
                 </div>

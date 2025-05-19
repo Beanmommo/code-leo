@@ -9,8 +9,12 @@ export interface Project {
   projectAim?: string;
   image: string;
   tags: string[];
-  link: string;
-  github: string;
+  link?: string; // Keep for backward compatibility
+  links: {
+    name: string;
+    url: string;
+    icon?: string;
+  }[];
   featured?: boolean;
   screenshots?: string[];
   technicalContributions?: string[];
@@ -46,7 +50,13 @@ export function useProjects() {
       image: "/projects/christ-covenant.png",
       tags: ["Wix Studio", "Canva", "Google SEO", "Power BI"],
       link: "https://www.covenant.org.au",
-      github: "#",
+      links: [
+        {
+          name: "Website",
+          url: "https://www.covenant.org.au",
+          icon: "globe",
+        },
+      ],
       featured: true,
       screenshots: [
         "/projects/christ-covenant/screenshot1.png",
@@ -101,7 +111,23 @@ export function useProjects() {
       image: "/projects/taskapp.jpg",
       tags: ["Vue.js", "Firebase", "Vuex", "SCSS"],
       link: "#",
-      github: "https://github.com/yourusername/task-management",
+      links: [
+        {
+          name: "GitHub Repository",
+          url: "https://github.com/yourusername/task-management",
+          icon: "github",
+        },
+        {
+          name: "Demo",
+          url: "https://task-management-demo.example.com",
+          icon: "external-link",
+        },
+        {
+          name: "Documentation",
+          url: "https://github.com/yourusername/task-management/wiki",
+          icon: "book",
+        },
+      ],
       screenshots: [
         "/projects/taskapp/screenshot1.jpg",
         "/projects/taskapp/screenshot2.jpg",
@@ -147,7 +173,23 @@ export function useProjects() {
       image: "/projects/weather.jpg",
       tags: ["Vue.js", "OpenWeather API", "Chart.js", "Geolocation"],
       link: "#",
-      github: "https://github.com/yourusername/weather-dashboard",
+      links: [
+        {
+          name: "GitHub Repository",
+          url: "https://github.com/yourusername/weather-dashboard",
+          icon: "github",
+        },
+        {
+          name: "Live Demo",
+          url: "https://weather-dashboard-demo.example.com",
+          icon: "cloud",
+        },
+        {
+          name: "API Documentation",
+          url: "https://openweathermap.org/api",
+          icon: "code",
+        },
+      ],
       screenshots: [
         "/projects/weather/screenshot1.jpg",
         "/projects/weather/screenshot2.jpg",

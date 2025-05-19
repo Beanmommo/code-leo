@@ -41,8 +41,23 @@ onMounted(() => {
                         <div class="featured-project-links">
                             <NuxtLink :to="`/projects/${featuredProject.slug}`" class="btn btn-primary">View Details
                             </NuxtLink>
-                            <a :href="featuredProject.github" class="btn btn-secondary" target="_blank">GitHub</a>
-                            <a :href="featuredProject.link" class="btn btn-outline" target="_blank">Live Demo</a>
+                            <div class="featured-links-list">
+                                <a v-for="(link, index) in featuredProject.links.slice(0, 2)" :key="index"
+                                    :href="link.url" class="featured-link-item" target="_blank">
+                                    <span v-if="link.icon" class="link-icon" :class="link.icon">
+                                        <!-- Icon placeholders -->
+                                        <span v-if="link.icon === 'github'">🔗</span>
+                                        <span v-else-if="link.icon === 'globe'">🌐</span>
+                                        <span v-else-if="link.icon === 'external-link'">↗️</span>
+                                        <span v-else-if="link.icon === 'calendar'">📅</span>
+                                        <span v-else-if="link.icon === 'book'">📚</span>
+                                        <span v-else-if="link.icon === 'cloud'">☁️</span>
+                                        <span v-else-if="link.icon === 'code'">💻</span>
+                                        <span v-else>🔗</span>
+                                    </span>
+                                    {{ link.name }}
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -67,9 +82,12 @@ onMounted(() => {
                             </div>
                             <div class="project-links">
                                 <NuxtLink :to="`/projects/${project.slug}`" class="project-link">View Details</NuxtLink>
-                                <a :href="project.github" class="project-link github" target="_blank">
-                                    GitHub
-                                </a>
+                                <div class="project-links-list">
+                                    <a v-for="(link, index) in project.links.slice(0, 1)" :key="index" :href="link.url"
+                                        class="project-link-small" target="_blank">
+                                        {{ link.name }}
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -185,8 +203,40 @@ onMounted(() => {
 
     &-links {
         display: flex;
+        flex-direction: column;
         gap: $unit * 3;
         margin-top: $unit * 4;
+
+        .featured-links-list {
+            display: flex;
+            flex-direction: column;
+            gap: $unit * 2;
+            margin-top: $unit * 2;
+
+            .featured-link-item {
+                display: flex;
+                align-items: center;
+                gap: $unit * 2;
+                padding: $unit * 2 $unit * 3;
+                background-color: #f0f0f0;
+                border-radius: 6px;
+                border-left: 3px solid $accent;
+                transition: all 0.3s ease;
+                text-decoration: none;
+                color: #444;
+                font-family: 'Noto Sans', sans-serif;
+                font-weight: 500;
+
+                &:hover {
+                    background-color: rgba($accent, 0.1);
+                    transform: translateX(3px);
+                }
+
+                .link-icon {
+                    font-size: 1.2rem;
+                }
+            }
+        }
     }
 }
 
@@ -268,6 +318,7 @@ onMounted(() => {
 
     .project-links {
         display: flex;
+        flex-direction: column;
         gap: $unit * 3;
 
         .project-link {
@@ -280,16 +331,32 @@ onMounted(() => {
             transition: all 0.3s ease;
             background-color: $accent;
             color: white;
+            text-align: center;
 
             &:hover {
                 background-color: darken($accent, 10%);
             }
+        }
 
-            &.github {
-                background-color: #333;
+        .project-links-list {
+            margin-top: $unit * 2;
+
+            .project-link-small {
+                display: inline-block;
+                padding: $unit * 1.5 $unit * 3;
+                border-radius: 4px;
+                font-family: 'Noto Sans', sans-serif;
+                font-weight: 500;
+                font-size: 0.85rem;
+                text-decoration: none;
+                transition: all 0.3s ease;
+                background-color: #f0f0f0;
+                color: #444;
+                border-left: 2px solid $accent;
 
                 &:hover {
-                    background-color: #000;
+                    background-color: rgba($accent, 0.1);
+                    transform: translateX(2px);
                 }
             }
         }
@@ -414,6 +481,19 @@ onMounted(() => {
                 font-size: 0.9rem;
                 width: 100%;
                 text-align: center;
+            }
+
+            .featured-links-list {
+                gap: $unit;
+
+                .featured-link-item {
+                    padding: $unit * 1.5 $unit * 2;
+                    font-size: 0.9rem;
+
+                    .link-icon {
+                        font-size: 1rem;
+                    }
+                }
             }
         }
     }

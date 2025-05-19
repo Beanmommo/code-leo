@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useProjects } from '~/composables/useProjects';
+import ImageModal from '~/components/Gallery/ImageModal.vue';
 
 const route = useRoute();
 const router = useRouter();
@@ -25,8 +26,10 @@ onMounted(() => {
 // For image gallery
 const activeImageIndex = ref(0);
 const showGalleryModal = ref(false);
+const isImageLoading = ref(false);
 
 const openGallery = (index: number) => {
+    isImageLoading.value = true; // Set loading state
     activeImageIndex.value = index;
     showGalleryModal.value = true;
 };
@@ -37,13 +40,22 @@ const closeGallery = () => {
 
 const nextImage = () => {
     if (!project?.screenshots) return;
+    isImageLoading.value = true;
     activeImageIndex.value = (activeImageIndex.value + 1) % project.screenshots.length;
 };
 
 const prevImage = () => {
     if (!project?.screenshots) return;
+    isImageLoading.value = true;
     activeImageIndex.value = (activeImageIndex.value - 1 + project.screenshots.length) % project.screenshots.length;
 };
+
+// Handle image load complete
+const onImageLoad = () => {
+    isImageLoading.value = false;
+};
+
+// No need for keyboard event handling or cleanup as it's handled by the ImageModal component
 
 // Get related projects (excluding current one)
 const relatedProjects = computed(() => {
@@ -76,12 +88,25 @@ const relatedProjects = computed(() => {
                         </div>
                     </div>
                     <div class="project-links">
-                        <a :href="project.github" class="btn btn-primary" target="_blank">
-                            <span>GitHub Repository</span>
-                        </a>
-                        <a :href="project.link" class="btn btn-secondary" target="_blank">
-                            <span>Live Demo</span>
-                        </a>
+                        <h4 class="links-title">Project Links</h4>
+                        <ul class="links-list">
+                            <li v-for="(link, index) in project.links" :key="index">
+                                <a :href="link.url" target="_blank" class="project-link-item">
+                                    <span v-if="link.icon" class="link-icon" :class="link.icon">
+                                        <!-- Icon placeholders - you can replace with actual icons -->
+                                        <span v-if="link.icon === 'github'">🔗</span>
+                                        <span v-else-if="link.icon === 'globe'">🌐</span>
+                                        <span v-else-if="link.icon === 'external-link'">↗️</span>
+                                        <span v-else-if="link.icon === 'calendar'">📅</span>
+                                        <span v-else-if="link.icon === 'book'">📚</span>
+                                        <span v-else-if="link.icon === 'cloud'">☁️</span>
+                                        <span v-else-if="link.icon === 'code'">💻</span>
+                                        <span v-else>🔗</span>
+                                    </span>
+                                    <span class="link-name">{{ link.name }}</span>
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -174,18 +199,10 @@ const relatedProjects = computed(() => {
             </div>
         </div>
 
-        <!-- Image Gallery Modal -->
-        <div class="gallery-modal" v-if="showGalleryModal && project.screenshots">
-            <div class="gallery-content">
-                <button class="close-button" @click="closeGallery">×</button>
-                <button class="nav-button prev" @click="prevImage">❮</button>
-                <div class="gallery-image">
-                    <img :src="project.screenshots[activeImageIndex]" :alt="`${project.title} Screenshot`" />
-                </div>
-                <button class="nav-button next" @click="nextImage">❯</button>
-                <div class="gallery-counter">{{ activeImageIndex + 1 }} / {{ project.screenshots.length }}</div>
-            </div>
-        </div>
+        <!-- Image Gallery Modal Component -->
+        <ImageModal :is-open="showGalleryModal" :images="project?.screenshots || []" :active-index="activeImageIndex"
+            :title="project?.title || ''" @close="closeGallery" @prev="prevImage" @next="nextImage"
+            @image-loaded="onImageLoad" />
     </div>
 </template>
 
@@ -226,7 +243,7 @@ const relatedProjects = computed(() => {
         gap: $unit * 2;
 
         .tag {
-            background-color: rgba($accent, 0.2);
+            background-color: rgba($accent, 0.8);
             color: white;
             padding: $unit $unit * 3;
             border-radius: 4px;
@@ -264,9 +281,55 @@ const relatedProjects = computed(() => {
     }
 
     .project-links {
-        display: flex;
-        gap: $unit * 4;
         margin-top: $unit * 4;
+
+        .links-title {
+            font-family: 'Noto Sans', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #444;
+            margin-bottom: $unit * 3;
+        }
+
+        .links-list {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: $unit * 2;
+
+            li {
+                margin-bottom: $unit * 2;
+
+                .project-link-item {
+                    display: flex;
+                    align-items: center;
+                    gap: $unit * 2;
+                    padding: $unit * 2 $unit * 3;
+                    background-color: #f8f9fa;
+                    border-radius: 6px;
+                    border-left: 3px solid $accent;
+                    transition: all 0.3s ease;
+                    text-decoration: none;
+                    color: #444;
+
+                    &:hover {
+                        background-color: rgba($accent, 0.1);
+                        transform: translateX(3px);
+                    }
+
+                    .link-icon {
+                        font-size: 1.2rem;
+                    }
+
+                    .link-name {
+                        font-family: 'Noto Sans', sans-serif;
+                        font-weight: 500;
+                        font-size: 1rem;
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -517,95 +580,9 @@ const relatedProjects = computed(() => {
     }
 }
 
-// Gallery Modal
-.gallery-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-    overflow: hidden; // Prevent scrolling when modal is open
-    box-sizing: border-box;
+// Gallery Modal styles are now in the ImageModal component
 
-    .gallery-content {
-        position: relative;
-        width: 80%;
-        max-width: 1200px;
-        height: 80%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .gallery-image {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-        }
-    }
-
-    .close-button {
-        position: absolute;
-        top: -40px;
-        right: 0;
-        background: none;
-        border: none;
-        color: white;
-        font-size: 2rem;
-        cursor: pointer;
-    }
-
-    .nav-button {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        background: rgba(0, 0, 0, 0.5);
-        color: white;
-        border: none;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        font-size: 1.5rem;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.3s ease;
-
-        &:hover {
-            background: rgba(0, 0, 0, 0.8);
-        }
-
-        &.prev {
-            left: -70px;
-        }
-
-        &.next {
-            right: -70px;
-        }
-    }
-
-    .gallery-counter {
-        position: absolute;
-        bottom: -40px;
-        left: 50%;
-        transform: translateX(-50%);
-        color: white;
-        font-size: 1rem;
-    }
-}
+// Gallery control styles are now in the ImageModal component
 
 // Responsive adjustments
 @media (max-width: 768px) {
@@ -676,13 +653,29 @@ const relatedProjects = computed(() => {
         }
 
         .project-links {
-            gap: $unit * 2;
+            .links-title {
+                font-size: 1.1rem;
+                margin-bottom: $unit * 2;
+            }
 
-            .btn {
-                padding: $unit * 2 $unit * 3;
-                font-size: 0.9rem;
-                width: 100%;
-                text-align: center;
+            .links-list {
+                gap: $unit;
+
+                li {
+                    margin-bottom: $unit;
+
+                    .project-link-item {
+                        padding: $unit * 1.5 $unit * 2;
+
+                        .link-icon {
+                            font-size: 1rem;
+                        }
+
+                        .link-name {
+                            font-size: 0.9rem;
+                        }
+                    }
+                }
             }
         }
     }
@@ -725,18 +718,4 @@ const relatedProjects = computed(() => {
     }
 }
 
-.gallery-modal {
-    .nav-button {
-        width: 40px;
-        height: 40px;
-
-        &.prev {
-            left: 10px;
-        }
-
-        &.next {
-            right: 10px;
-        }
-    }
-}
-</style>
+// Mobile gallery styles are now in the ImageModal component</style>
