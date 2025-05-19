@@ -167,7 +167,7 @@ const breadcrumbs = computed(() => {
         }
 
         &.separator {
-          margin: 0 $unit / 2;
+          margin: 0 $unit/2;
 
           svg {
             width: 12px;

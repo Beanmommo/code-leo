@@ -12,7 +12,7 @@ export default defineNuxtConfig({
       },
     },
   },
-  modules: ["@nuxtjs/google-fonts"],
+  modules: ["@nuxtjs/google-fonts", "@nuxthub/core"],
   googleFonts: {
     families: {
       "Noto Sans": true,
