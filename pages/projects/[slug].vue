@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useProjects } from '~/composables/useProjects';
 import ImageModal from '~/components/Gallery/ImageModal.vue';
+import ProjectTimeline from '~/components/Project/Timeline.vue';
 
 const route = useRoute();
 const router = useRouter();
@@ -119,6 +120,15 @@ const relatedProjects = computed(() => {
                 <div class="project-aim">
                     <p class="project-aim-description">{{ project.projectAim }}</p>
                 </div>
+
+                <!-- Project Timeline Section (if timeline data exists) -->
+            </div>
+        </section>
+
+        <section class="project-section" v-if="project.timeline && project.timeline.length > 0">
+            <div class="container">
+                <h2 class="section-title">Project Timeline</h2>
+                <ProjectTimeline :timeline="project.timeline" />
             </div>
         </section>
 
@@ -355,6 +365,7 @@ const relatedProjects = computed(() => {
 .project-aim {
     max-width: 800px;
     margin: 0 auto;
+    margin-bottom: $margin * 2;
 
     .project-aim-description {
         font-size: 1.1rem;
@@ -365,6 +376,26 @@ const relatedProjects = computed(() => {
         background-color: rgba($accent, 0.05);
         border-left: 4px solid $accent;
         border-radius: 0 8px 8px 0;
+    }
+}
+
+// Add a divider between project aim and timeline
+.project-section .container {
+    position: relative;
+
+    .project-timeline {
+        position: relative;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: -$margin;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba($accent, 0.5), transparent);
+        }
     }
 }
 
@@ -607,6 +638,17 @@ const relatedProjects = computed(() => {
         }
     }
 
+    .project-section .container {
+        .project-timeline {
+            margin-top: $margin * 1.5;
+
+            &::before {
+                width: 60px;
+                top: -$margin * 0.75;
+            }
+        }
+    }
+
     .technical-contributions {
         padding: $padding;
 
@@ -698,6 +740,17 @@ const relatedProjects = computed(() => {
         .project-aim-description {
             padding: $unit * 2;
             font-size: 0.95rem;
+        }
+    }
+
+    .project-section .container {
+        .project-timeline {
+            margin-top: $margin;
+
+            &::before {
+                width: 40px;
+                top: -$margin * 0.5;
+            }
         }
     }
 
