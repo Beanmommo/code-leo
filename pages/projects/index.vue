@@ -98,6 +98,8 @@ onMounted(() => {
 </template>
 
 <style lang="scss" scoped>
+@use 'sass:color';
+
 .projects-page {
     opacity: 0;
     transform: translateY(20px);
@@ -334,7 +336,7 @@ onMounted(() => {
             text-align: center;
 
             &:hover {
-                background-color: darken($accent, 10%);
+                background-color: color.scale($accent, $lightness: -10%);
             }
         }
 
@@ -377,7 +379,7 @@ onMounted(() => {
         color: white;
 
         &:hover {
-            background-color: darken($accent, 10%);
+            background-color: color.scale($accent, $lightness: -10%);
             transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }

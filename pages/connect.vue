@@ -132,6 +132,8 @@ onMounted(() => {
 </template>
 
 <style lang="scss" scoped>
+@use 'sass:color';
+
 .connect-page {
   padding: $section-padding;
   background-color: #f8f9fa;
@@ -287,7 +289,7 @@ onMounted(() => {
       white-space: nowrap;
 
       &:hover {
-        background-color: darken($accent, 10%);
+        background-color: color.scale($accent, $lightness: -10%);
         transform: translateY(-2px);
       }
     }

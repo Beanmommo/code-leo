@@ -207,6 +207,8 @@ const relatedProjects = computed(() => {
 </template>
 
 <style lang="scss" scoped>
+@use 'sass:color';
+
 .project-detail-page {
     opacity: 0;
     transform: translateY(20px);
@@ -551,7 +553,7 @@ const relatedProjects = computed(() => {
         color: white;
 
         &:hover {
-            background-color: darken($accent, 10%);
+            background-color: color.scale($accent, $lightness: -10%);
             transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }

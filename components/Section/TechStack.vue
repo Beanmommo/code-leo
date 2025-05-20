@@ -93,6 +93,8 @@ onMounted(() => {
 </template>
 
 <style lang="scss" scoped>
+@use 'sass:color';
+
 .tech-stack-section {
     opacity: 0;
     transform: translateY(20px);
@@ -197,7 +199,7 @@ onMounted(() => {
 
             .skill-bar {
                 height: 100%;
-                background: linear-gradient(90deg, $accent, darken($accent, 15%));
+                background: linear-gradient(90deg, $accent, color.scale($accent, $lightness: -15%));
                 border-radius: 4px;
                 transition: width 1.5s ease-out;
             }
@@ -233,7 +235,7 @@ onMounted(() => {
 
         .additional-skill {
             background-color: rgba($accent, 0.1);
-            color: darken($accent, 10%);
+            color: color.scale($accent, $lightness: -10%);
             padding: $unit $unit * 3;
             border-radius: 20px;
             font-size: 0.9rem;
